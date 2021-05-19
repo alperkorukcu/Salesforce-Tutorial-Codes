@@ -1,0 +1,54 @@
+<aura:component implements="flexipage:availableForRecordHome,force:appHostable" controller="saveAccController">
+    <aura:attribute name="account" type="Account"/>
+    <aura:attribute name="accountList" type="Object[]"/>
+    <aura:attribute name="inName" type="String"/>
+    <aura:attribute name="inDate" type="Date"/>
+    <aura:handler name="init" value="{! this}" action="{!c.refresh}"/>
+	<div style="background-color:white">
+    <lightning:tabset  selectedTabId="one">
+        <lightning:tab label="Add Account" id="one">
+            <div>
+        <lightning:input aura:id="name" required="true" name="input3" label="Name" placeholder="Alper" value="{!v.inName}" />
+        <lightning:input aura:id="date" required="true" type="date" name="inputDate" label="Date" placeholder="2020-09-07" value="{!v.inDate}" />
+        <lightning:button aura:id="button" class="slds-button slds-button_brand" label="Save" onclick="{!c.getInput}"/>
+    </div>
+        </lightning:tab>
+        <lightning:tab label="Accounts" id="two">            
+            <lightning:recordViewForm aura:id="viewForm" recordId="{!v.account.Id}" objectApiName="Account">
+            <aura:if isTrue="{!v.accountList.length > 0}">
+                <div class="docs-codeblock-example">
+	<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+		<thead>
+			<tr class="slds-line-height_reset">
+				<th class="" scope="col">
+					<div class="slds-truncate" title="Account Name">Account Name</div>
+				</th>
+				<th class="" scope="col">
+					<div class="slds-truncate" title="Close Date">Date</div>
+				</th>
+			</tr>
+		</thead>
+    		<aura:iteration items="{!v.accountList}" var="item">
+            	<tbody>
+			<tr class="slds-hint-parent">
+				<td data-label="Account Name">
+					<div class="slds-truncate" title="AccountName">{!item.Name}</div>
+				</td>
+				<td data-label="Close Date">
+					<div class="slds-truncate" title="AccountDate">{!item.Description}</div>
+				</td>
+			</tr>
+		</tbody>
+        	</aura:iteration>
+        </table>
+</div>
+            <aura:set attribute="else">
+            		<h3 class="slds-text-small slds-text-color_error">No accounts found.</h3>
+    		</aura:set>
+                     
+			</aura:if>
+                </lightning:recordViewForm>
+        </lightning:tab>
+    </lightning:tabset>
+    </div>
+</aura:component>

@@ -1,0 +1,17 @@
+<aura:component >
+	<aura:attribute name="account" type="Account"/>
+    <lightning:recordViewForm aura:id="viewForm" recordId="{!v.account.Id}" objectApiName="Account">
+        
+		<tbody>
+			<tr class="slds-hint-parent">
+				<td data-label="Account Name">
+					<div class="slds-truncate" title="AccountName">{!v.account.Name}</div>
+				</td>
+				<td data-label="Close Date">
+					<div class="slds-truncate" title="AccountDate">{!v.account.Description}</div>
+				</td>
+			</tr>
+		</tbody>
+	
+    </lightning:recordViewForm>
+</aura:component>

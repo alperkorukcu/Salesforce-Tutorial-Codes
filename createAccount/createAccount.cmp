@@ -1,0 +1,9 @@
+<aura:component controller="saveAccController">
+    <aura:attribute name="inName" type="String"/>
+    <aura:attribute name="inDate" type="Date"/>
+    <div>
+        <lightning:input aura:id="name" required="true" name="input3" label="Name" placeholder="Alper" value="{!v.inName}" />
+        <lightning:input aura:id="date" required="true" type="date" name="inputDate" label="Date" placeholder="2020-09-07" value="{!v.inDate}" />
+        <lightning:button aura:id="button" class="slds-button slds-button_brand" label="Save" onclick="{!c.getInput}"/>
+    </div>
+</aura:component>
